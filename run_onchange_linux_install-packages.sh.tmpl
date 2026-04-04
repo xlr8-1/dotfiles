@@ -1,18 +1,34 @@
-{{ if eq .chezmoi.os "linux" -}}
 #!/bin/bash
-# packages: {{ list .packages.linux.apt .packages.linux.pacman | toJson | sha256sum }}
+{{ if eq .chezmoi.os "linux" -}}
+# packages: {{ list .packages.linux.apt .packages.linux.pacman .chezmoi_env | toJson | sha256sum }}
 
 set -e
 
+{{- $env := .chezmoi_env }}
+
+install_packages() {
+  [[ $# -eq 0 ]] && return 0
+  $PM_INSTALL "$@"
+}
+
 if command -v pacman &>/dev/null; then
-  for pkg in {{ range .packages.linux.pacman }}{{ . }} {{ end }}; do
-    sudo pacman -S --needed --noconfirm "$pkg"
-  done
+  PM_INSTALL="sudo pacman -S --needed --noconfirm"
+  sudo pacman -Sy --noconfirm
+
+  install_packages {{ range .packages.linux.pacman.common }}{{ . | quote }} {{ end }}
+  {{ if ne $env "common" -}}
+  install_packages {{ range (index .packages.linux.pacman $env) }}{{ . | quote }} {{ end }}
+  {{- end }}
+
 elif command -v apt-get &>/dev/null; then
+  PM_INSTALL="sudo apt-get install -y"
   sudo apt-get update -qq
-  for pkg in {{ range .packages.linux.apt }}{{ . }} {{ end }}; do
-    sudo apt-get install -y "$pkg"
-  done
+
+  install_packages {{ range .packages.linux.apt.common }}{{ . | quote }} {{ end }}
+  {{ if ne $env "common" -}}
+  install_packages {{ range (index .packages.linux.apt $env) }}{{ . | quote }} {{ end }}
+  {{- end }}
+
 else
   echo "No supported package manager found (apt-get or pacman)" >&2
   exit 1

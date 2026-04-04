@@ -1,9 +1,109 @@
 packages:
   linux:
     apt:
-    - 'git'
-    - 'wget'
-    pacman: []
+      common:
+      - 'curl'
+      - 'git'
+      - 'tmux'
+      - 'vim'
+      - 'wget'
+      dev:
+      - 'build-essential'
+      - 'clang'
+      - 'cmake'
+      - 'gdb'
+      - 'libssl-dev'
+      - 'pkg-config'
+      - 'python3-dev'
+      - 'strace'
+      - 'valgrind'
+      security:
+      # recon & enumeration
+      - 'amass'
+      - 'dirb'
+      - 'dnsenum'
+      - 'dnsrecon'
+      - 'enum4linux'
+      - 'ffuf'
+      - 'fierce'
+      - 'gobuster'
+      - 'ldap-utils'
+      - 'masscan'
+      - 'nbtscan'
+      - 'nikto'
+      - 'nmap'
+      - 'onesixtyone'
+      - 'recon-ng'
+      - 'smbclient'
+      - 'smbmap'
+      - 'theharvester'
+      - 'wafw00f'
+      - 'whatweb'
+      - 'wpscan'
+      # exploitation
+      - 'certipy-ad'
+      - 'commix'
+      - 'evil-winrm'
+      - 'exploitdb'
+      - 'impacket-scripts'
+      - 'metasploit-framework'
+      - 'netexec'
+      - 'sqlmap'
+      # credential attacks
+      - 'cewl'
+      - 'crunch'
+      - 'hashcat'
+      - 'hashcat-utils'
+      - 'hydra'
+      - 'john'
+      - 'medusa'
+      - 'responder'
+      - 'seclists'
+      - 'wordlists'
+      # post-exploitation & ad
+      - 'bloodhound.py'
+      - 'mimikatz'
+      - 'passing-the-hash'
+      - 'peass'
+      - 'powershell-empire'
+      - 'starkiller'
+      # network & traffic
+      - 'ettercap-graphical'
+      - 'mitmproxy'
+      - 'netcat-traditional'
+      - 'ngrep'
+      - 'proxychains4'
+      - 'socat'
+      - 'tcpdump'
+      - 'tshark'
+      - 'wireshark'
+      # reverse engineering & pwn
+      - 'binwalk'
+      - 'edb-debugger'
+      - 'gdb'
+      - 'ghidra'
+      - 'ltrace'
+      - 'radare2'
+      - 'strace'
+      # forensics
+      - 'autopsy'
+      - 'bulk-extractor'
+      - 'foremost'
+      - 'sleuthkit'
+      - 'testdisk'
+      # wireless
+      - 'aircrack-ng'
+      - 'bully'
+      - 'reaver'
+      - 'wifite'
+      # misc
+      - 'burpsuite'
+      - 'patator'
+      - 'wfuzz'
+    pacman:
+      common: []
+      dev: []
+      security: []
   darwin:
     brews:
     - 'git'

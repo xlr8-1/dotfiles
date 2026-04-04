@@ -5,3 +5,10 @@
 semgrep = "latest"
 trivy = "latest"
 trufflehog = "latest"
+
+[hooks]
+postinstall = """
+uv tool install pacu
+uv tool install impacket
+uv tool install harlequin
+"""

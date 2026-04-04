@@ -17,3 +17,10 @@
 	type = "file"
 	url = "https://raw.githubusercontent.com/catppuccin/lsd/refs/heads/main/themes/catppuccin-mocha/colors.yaml"
 	refreshPeriod = "168h"
+
+{{ if eq .chezmoi.os "linux" -}}
+[".local/share/fonts/JetBrainsMono"]
+    type = "archive"
+    url = "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip"
+    refreshPeriod = "168h"
+{{ end -}}

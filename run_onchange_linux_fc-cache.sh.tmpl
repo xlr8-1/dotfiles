@@ -1,0 +1,6 @@
+#!/bin/bash
+{{ if eq .chezmoi.os "linux" -}}
+# external: {{ include ".chezmoiexternal.toml.tmpl" | sha256sum }}
+
+fc-cache -fv
+{{ end -}}

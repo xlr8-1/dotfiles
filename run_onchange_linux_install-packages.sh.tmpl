@@ -1,0 +1,20 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/bin/bash
+# packages: {{ list .packages.linux.apt .packages.linux.pacman | toJson | sha256sum }}
+
+set -e
+
+if command -v pacman &>/dev/null; then
+  for pkg in {{ range .packages.linux.pacman }}{{ . }} {{ end }}; do
+    sudo pacman -S --needed --noconfirm "$pkg"
+  done
+elif command -v apt-get &>/dev/null; then
+  sudo apt-get update -qq
+  for pkg in {{ range .packages.linux.apt }}{{ . }} {{ end }}; do
+    sudo apt-get install -y "$pkg"
+  done
+else
+  echo "No supported package manager found (apt-get or pacman)" >&2
+  exit 1
+fi
+{{ end -}}

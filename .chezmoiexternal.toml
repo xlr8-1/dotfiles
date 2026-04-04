@@ -1,0 +1,19 @@
+[".config/bat/themes/Catppuccin Mocha.tmTheme"]
+    type = "file"
+    url = "https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme"
+    refreshPeriod = "168h"
+
+[".config/zellij/catppuccin.kdl"]
+	type = "file"
+	url = "https://raw.githubusercontent.com/catppuccin/zellij/refs/heads/main/catppuccin.kdl"
+	refreshPeriod = "168h"
+
+[".config/atuin/themes/catppuccin-mocha-mauve.toml"]
+	type = "file"
+	url = "https://raw.githubusercontent.com/catppuccin/atuin/refs/heads/main/themes/mocha/catppuccin-mocha-mauve.toml"
+	refreshPeriod = "168h"
+
+[".config/lsd/colors.yaml"]
+	type = "file"
+	url = "https://raw.githubusercontent.com/catppuccin/lsd/refs/heads/main/themes/catppuccin-mocha/colors.yaml"
+	refreshPeriod = "168h"

@@ -1,0 +1,38 @@
+packages:
+  linux:
+    apt:
+    - 'git'
+    - 'wget'
+    pacman: []
+  darwin:
+    brews:
+    - 'git'
+    - 'wget'
+    - 'macos-trash'
+    casks:
+    - '1password'
+    - '1password-cli'
+    - 'adguard'
+    - 'balenaetcher'
+    - 'copilot-cli'
+    - 'docker-desktop'
+    - 'figma'
+    - 'filen'
+    - 'font-jetbrains-mono-nerd-font'
+    - 'font-symbols-only-nerd-font'
+    - 'ghostty'
+    - 'google-chrome'
+    - 'knockknock'
+    - 'logi-options+'
+    - 'lulu'
+    - 'obsidian'
+    - 'opencode-desktop'
+    - 'oversight'
+    - 'protonvpn'
+    - 'raycast'
+    - 'rustdesk'
+    - 'signal'
+    - 'slack'
+    - 'utm'
+    - 'visual-studio-code'
+    - 'zed'

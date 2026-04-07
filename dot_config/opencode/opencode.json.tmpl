@@ -5,5 +5,49 @@
 			"type": "remote",
 			"url": "https://mcp.context7.com/mcp"
 		}
+	},
+	"permission": {
+		"bash": {
+			"*": "allow",
+			"rm -rf *": "deny",
+			"rm -fr *": "deny",
+			"sudo *": "deny",
+			"mkfs *": "deny",
+			"dd *": "deny",
+			"curl *|bash*": "deny",
+			"wget *|bash*": "deny",
+			"git *": "ask",
+			"git push": "deny",
+			"git push --force*": "deny",
+			"git push *--force*": "deny",
+			"git reset --hard*": "deny"
+		},
+		"edit": {
+			"*": "allow",
+			"~/.bashrc": "deny",
+			"~/.zshrc": "deny",
+			"~/.ssh/**": "deny"
+		},
+		"read": {
+			"*": "allow",
+			"~/.ssh/**": "deny",
+			"~/.gnupg/**": "deny",
+			"~/.aws/**": "deny",
+			"~/.azure/**": "deny",
+			"~/.config/gh/**": "deny",
+			"~/.git-credentials": "deny",
+			"~/.docker/config.json": "deny",
+			"~/.kube/**": "deny",
+			"~/.npmrc": "deny",
+			"~/.npm/**": "deny",
+			"~/.pypirc": "deny",
+			"~/.gem/credentials": "deny",
+			"~/Library/Keychains/**": "deny",
+			"~/Library/Application Support/**/metamask*/**": "deny",
+			"~/Library/Application Support/**/electrum*/**": "deny",
+			"~/Library/Application Support/**/exodus*/**": "deny",
+			"~/Library/Application Support/**/phantom*/**": "deny",
+			"~/Library/Application Support/**/solflare*/**": "deny"
+		}
 	}
 }

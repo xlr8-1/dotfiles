@@ -75,7 +75,6 @@ packages:
     - '1password-cli'
     - 'adguard'
     - 'balenaetcher'
-    - 'copilot-cli'
     - 'docker-desktop'
     - 'figma'
     - 'filen'

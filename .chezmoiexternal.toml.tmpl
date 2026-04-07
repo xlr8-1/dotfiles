@@ -31,3 +31,34 @@
     stripComponents = 2
     include = ["*/", "*/**"]
     refreshPeriod = "168h"
+
+[".opencode/skills/slidev"]
+    type = "archive"
+    url = "https://github.com/slidevjs/slidev/archive/refs/heads/main.zip"
+    stripComponents = 3
+    include = ["*/skills/slidev/**"]
+    refreshPeriod = "168h"
+
+[".opencode/skills/humanizer"]
+    type = "archive"
+    url = "https://github.com/trailofbits/skills-curated/archive/refs/heads/main.zip"
+    stripComponents = 5
+    include = ["*/plugins/humanizer/skills/humanizer/**"]
+    refreshPeriod = "168h"
+
+[".config/zsh/plugins/zsh-syntax-highlighting"]
+    type = "archive"
+    url = "https://github.com/zsh-users/zsh-syntax-highlighting/archive/refs/tags/0.8.0.tar.gz"
+    exact = true
+    stripComponents = 1
+
+[".config/zsh/plugins/zsh-autosuggestions"]
+    type = "archive"
+    url = "https://github.com/zsh-users/zsh-autosuggestions/archive/refs/tags/v0.7.1.zip"
+    exact = true
+    stripComponents = 1
+
+[".config/zsh/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh"]
+	type = "file"
+	url = "https://raw.githubusercontent.com/catppuccin/zsh-syntax-highlighting/refs/heads/main/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh"
+    refreshPeriod = "168h"

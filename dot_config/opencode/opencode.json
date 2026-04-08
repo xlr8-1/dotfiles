@@ -1,9 +1,27 @@
 {
 	"$schema": "https://opencode.ai/config.json",
+	"disabled_providers": ["opencode"],
 	"mcp": {
 		"context7": {
 			"type": "remote",
 			"url": "https://mcp.context7.com/mcp"
+		}
+	},
+	"lsp": {
+		"ty": {
+			"command": ["ty", "server"],
+			"extensions": [".py", ".pyi"]
+		},
+		"ruff": {
+			"command": ["ruff", "server"],
+			"extensions": [".py", ".pyi"]
+		},
+		"pyright": {
+			"disabled": true
+		},
+		"marksman": {
+			"command": ["marksman", "server"],
+			"extensions": [".md", ".mdx"]
 		}
 	},
 	"permission": {

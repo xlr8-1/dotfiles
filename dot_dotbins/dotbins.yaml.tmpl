@@ -19,6 +19,10 @@ platforms:
 # Tool definitions
 # Format: tool_name: owner/repo or detailed configuration
 tools:
+  fd:
+    repo: sharkdp/fd
+  rg:
+    repo: BurntSushi/ripgrep
 
   # Essential CLI tools with minimal configuration
   bat:
@@ -58,11 +62,19 @@ tools:
     shell_code:
       bash,zsh: |
         eval "$(zoxide init __DOTBINS_SHELL__)"
+  jq:
+    repo: jqlang/jq
   rip:
     repo: MilesCranmer/rip2
     shell_code:
       bash,zsh: |
         export RIP_GRAVEYARD=~/.local/share/Trash
+  sd:
+    repo: chmln/sd
+  topgrade:
+    repo: topgrade-rs/topgrade
+  yq:
+    repo: mikefarah/yq
 
   starship:
     repo: starship/starship
@@ -151,6 +163,9 @@ tools:
     asset_patterns:
       linux: cargo-binstall-{arch}-unknown-linux-musl.tgz
       macos: cargo-binstall-{arch}-apple-darwin.zip
+    shell_code:
+      bash,zsh: |
+        export PATH=$PATH:$HOME/.cargo/bin
 
   delta:
     repo: dandavison/delta
@@ -172,21 +187,24 @@ tools:
       macos: docker-compose-darwin-{arch}
     extract_archive: false
 
-{{ if eq (index . "chezmoi_env" | default "common") "security" -}}
-  rustscan:
-    repo: bee-san/Rustscan
+{{ if eq (index . "chezmoi_env" | default "common") "security" }}
+
+  bloodhound-cli:
+    repo: SpecterOps/bloodhound-cli
+    asset_patterns:
+      linux: bloodhound-cli-linux-{arch}.tar.gz
+      macos: bloodhound-cli-darwin-{arch}.tar.gz
+    shell_code:
+      bash,zsh: |
+        eval "$(bloodhound-cli completion __DOTBINS_SHELL__)"
+
+  feroxbuster:
+    repo: epi052/feroxbuster
     arch_map:
       amd64: x86_64
       arm64: aarch64
     asset_patterns:
-      linux: rustscan_{version}_{arch}.deb
-      macos: null
+      linux: "{arch}-linux-feroxbuster.tar.gz"
+      macos: "{arch}-macos-feroxbuster.tar.gz"
+
 {{ end -}}
-  gitui:
-    repo: gitui-org/gitui
-    arch_map:
-      amd64: x86_64
-      arm64: aarch64
-    asset_patterns:
-      linux: gitui-linux-{arch}.tar.gz
-      macos: gitui-mac.tar.gz

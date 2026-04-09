@@ -1,0 +1,20 @@
+# If not running interactively, don't do anything (leave this at the top of this file)
+[[ $- != *i* ]] && return
+
+{{- if eq .distro "omarchy" }}
+# All the default Omarchy aliases and functions
+# (don't mess with these directly, just overwrite them here!)
+source ~/.local/share/omarchy/default/bash/rc
+{{- end }}
+
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+source $HOME/.dotbins/shell/bash.sh
+
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+
+{{- if eq .distro "omarchy" }}
+alias zed=zeditor
+alias external_only='hyprctl keyword monitor "eDP-1, disable"'
+mkcd () { mkdir "$@" && cd "$@"; }
+source -- ~/.local/share/blesh/ble.sh
+{{- end }}

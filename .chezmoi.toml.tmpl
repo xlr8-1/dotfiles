@@ -1,2 +1,11 @@
+{{- $distrochoices := list "omarchy" "macos" "kali" -}}
+{{- $distro := promptChoiceOnce . "distro" "Which distro" $distrochoices -}}
+{{- $chezmoienvchoices := list "dev" "security" -}}
+{{- $chezmoi_env := promptChoiceOnce . "chezmoi_env" "Which environment" $chezmoienvchoices -}}
+
+[data]
+distro = {{ $distro | quote }}
+chezmoi_env = {{ $chezmoi_env | quote }}
+
 [diff]
     pager = "delta"

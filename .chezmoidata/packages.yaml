@@ -2,97 +2,98 @@ packages:
   linux:
     apt:
       common:
-      - 'curl'
-      - 'git'
-      - 'tmux'
-      - 'vim'
-      - 'wget'
+        - "curl"
+        - "git"
+        - "tmux"
+        - "vim"
+        - "wget"
       dev:
-      - 'build-essential'
-      - 'clang'
-      - 'cmake'
-      - 'gdb'
-      - 'libssl-dev'
-      - 'pkg-config'
-      - 'python3-dev'
-      - 'strace'
-      - 'valgrind'
+        - "build-essential"
+        - "clang"
+        - "cmake"
+        - "gdb"
+        - "libssl-dev"
+        - "pkg-config"
+        - "python3-dev"
+        - "strace"
+        - "valgrind"
       security:
-      # recon & enumeration
-      - 'dirb'
-      - 'dnsenum'
-      - 'dnsrecon'
-      - 'ffuf'
-      - 'gobuster'
-      - 'ldap-utils'
-      - 'masscan'
-      - 'nbtscan'
-      - 'nikto'
-      - 'nmap'
-      - 'recon-ng'
-      - 'smbclient'
-      - 'smbmap'
-      - 'whatweb'
-      # exploitation
-      - 'metasploit-framework'
-      - 'sqlmap'
-      # credential attacks
-      - 'crunch'
-      - 'hashcat'
-      - 'hydra'
-      - 'john'
-      - 'medusa'
+        # recon & enumeration
+        - "dirb"
+        - "dnsenum"
+        - "dnsrecon"
+        - "ffuf"
+        - "gobuster"
+        - "ldap-utils"
+        - "masscan"
+        - "nbtscan"
+        - "nikto"
+        - "nmap"
+        - "recon-ng"
+        - "smbclient"
+        - "smbmap"
+        - "whatweb"
+        # exploitation
+        - "metasploit-framework"
+        - "sqlmap"
+        # credential attacks
+        - "crunch"
+        - "hashcat"
+        - "hydra"
+        - "john"
+        - "medusa"
 
-      # network & traffic
-      - 'ettercap-graphical'
-      - 'mitmproxy'
-      - 'netcat-traditional'
-      - 'ngrep'
-      - 'proxychains4'
-      - 'socat'
-      - 'tcpdump'
-      - 'tshark'
-      - 'wireshark'
-      # reverse engineering & pwn
-      - 'gdb'
-      # forensics
-      - 'sleuthkit'
-      # wireless
-      - 'aircrack-ng'
-      # misc
-      - 'wfuzz'
+        # network & traffic
+        - "ettercap-graphical"
+        - "mitmproxy"
+        - "netcat-traditional"
+        - "ngrep"
+        - "proxychains4"
+        - "socat"
+        - "tcpdump"
+        - "tshark"
+        - "wireshark"
+        # reverse engineering & pwn
+        - "gdb"
+        # forensics
+        - "sleuthkit"
+        # wireless
+        - "aircrack-ng"
+        # misc
+        - "wfuzz"
     pacman:
       common: []
       dev: []
-      security: []
+      security:
+        - "rustscan"
   darwin:
     brews:
-    - 'git'
-    - 'wget'
-    - 'macos-trash'
+      - "git"
+      - "wget"
+      - "macos-trash"
     casks:
-    - '1password'
-    - '1password-cli'
-    - 'adguard'
-    - 'balenaetcher'
-    - 'docker-desktop'
-    - 'figma'
-    - 'filen'
-    - 'font-jetbrains-mono-nerd-font'
-    - 'font-symbols-only-nerd-font'
-    - 'ghostty'
-    - 'google-chrome'
-    - 'knockknock'
-    - 'logi-options+'
-    - 'lulu'
-    - 'obsidian'
-    - 'opencode-desktop'
-    - 'oversight'
-    - 'protonvpn'
-    - 'raycast'
-    - 'rustdesk'
-    - 'signal'
-    - 'slack'
-    - 'utm'
-    - 'visual-studio-code'
-    - 'zed'
+      - "1password"
+      - "1password-cli"
+      - "adguard"
+      - "balenaetcher"
+      - "docker-desktop"
+      - "figma"
+      - "filen"
+      - "font-jetbrains-mono-nerd-font"
+      - "font-symbols-only-nerd-font"
+      - "ghostty"
+      - "google-chrome"
+      - "knockknock"
+      - "logi-options+"
+      - "lulu"
+      - "obsidian"
+      - "opencode-desktop"
+      - "oversight"
+      - "protonvpn"
+      - "raycast"
+      - "rustdesk"
+      - "signal"
+      - "slack"
+      - "utm"
+      - "visual-studio-code"
+      - "zed"

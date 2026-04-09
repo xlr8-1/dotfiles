@@ -1,0 +1,29 @@
+.config/nvim.backup.*
+.config/**/*.bak
+.config/**/*.bak.*
+
+{{- if ne .distro "macos" }}
+Library
+.barik-config.toml
+.config/aerospace
+{{- end }}
+
+{{- if ne .chezmoi.os "linux" }}
+.config/systemd
+.local/share/applications
+.config/display-switch
+{{- end }}
+
+{{- if ne .distro "omarchy" }}
+.config/hypr
+.config/omarchy
+.config/uwsm
+.config/waybar
+.config/satty
+.config/zen
+.local/share/omarchy
+{{- end }}
+
+{{- if ne .chezmoi_env "security" }}
+.rustscan.toml
+{{- end }}

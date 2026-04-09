@@ -2,10 +2,33 @@
 bun = "latest"
 go = "latest"
 uv = 'latest'
-topgrade = "latest"
-sd = "latest"
-yq = "latest"
 dust = "latest"
+{{ if eq (index . "chezmoi_env" | default "common") "dev" -}}
+gh = "latest"
+zizmor = "latest"
+yamlfmt = "latest"
+task = "latest"
+hyperfine = "latest"
+opencode = "latest"
+ruff = "latest"
+ty = "latest"
+marksman = "latest"
+oxfmt = "latest"
+{{ end -}}
+{{ if eq (index . "chezmoi_env" | default "common") "security" -}}
+"aqua:projectdiscovery/nuclei" = "latest"
+semgrep = "latest"
+trivy = "latest"
+trufflehog = "latest"
+opencode = "latest"
 
+[hooks]
+postinstall = """
+uv tool install pacu
+uv tool install impacket
+uv tool install harlequin
+uv tool install gsutil
+"""
+{{ end }}
 [settings]
 experimental = true

@@ -1,6 +1,7 @@
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+{{- if eq .distro "macos" }}
 export PATH=$PATH:/opt/homebrew/bin
-export TERM=xterm-256color
+{{- end }}
 
 autoload -Uz compinit
 compinit
@@ -11,4 +12,5 @@ source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.config/zsh/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh
 
+export TERM=xterm-256color
 export OPENCODE_EXPERIMENTAL_OXFMT=true

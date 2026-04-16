@@ -35,7 +35,12 @@ mouse-scroll-multiplier = 0.95
 
 # Fix general slowness on hyprland (https://github.com/ghostty-org/ghostty/discussions/3224)
 async-backend = epoll
+{{- if eq .distro "macos" }}
+command = /bin/zsh
+{{- end }}
+{{- if eq .chezmoi.os "linux" }}
 command = /usr/bin/zsh
+{{- end }}
 
 # Background
 # background-image-fit = stretch

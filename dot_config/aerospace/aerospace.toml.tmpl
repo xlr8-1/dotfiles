@@ -160,7 +160,9 @@ ctrl-shift-right = ['join-with right', 'mode main']
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
 check-further-callbacks = true
-run = ['move-node-to-workspace 1']
+run = ['move-node-to-workspace 1', 
+  "layout tiling",
+]
 
 [[on-window-detected]]
 if.app-id = 'app.zen-browser.zen'

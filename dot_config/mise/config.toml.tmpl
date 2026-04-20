@@ -3,6 +3,7 @@ bun = "latest"
 go = "latest"
 uv = 'latest'
 dust = "latest"
+"npm:defuddle" = "latest"
 {{ if eq (index . "chezmoi_env" | default "common") "dev" -}}
 gh = "latest"
 zizmor = "latest"
@@ -14,6 +15,7 @@ ruff = "latest"
 ty = "latest"
 marksman = "latest"
 oxfmt = "latest"
+golangci-lint = "v2.11.4"
 {{ end -}}
 {{ if eq (index . "chezmoi_env" | default "common") "security" -}}
 "aqua:projectdiscovery/nuclei" = "latest"

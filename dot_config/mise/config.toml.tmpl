@@ -23,6 +23,9 @@ semgrep = "latest"
 trivy = "latest"
 trufflehog = "latest"
 opencode = "latest"
+pnpm = "latest"
+ruby = "3"
+just = "latest"
 
 [hooks]
 postinstall = """
@@ -30,6 +33,10 @@ uv tool install pacu
 uv tool install impacket
 uv tool install harlequin
 uv tool install gsutil
+go install github.com/praetorian-inc/augustus/cmd/augustus@latest
+go install github.com/praetorian-inc/nerva/cmd/nerva@latest
+go install github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
+go install -v github.com/projectdiscovery/urlfinder/cmd/urlfinder@latest
 """
 {{ end }}
 [settings]

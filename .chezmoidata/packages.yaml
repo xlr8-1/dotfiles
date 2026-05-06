@@ -18,6 +18,7 @@ packages:
         - "strace"
         - "valgrind"
       security:
+        - "libpcap-dev"
         # recon & enumeration
         - "dirb"
         - "dnsenum"

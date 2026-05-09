@@ -31,7 +31,14 @@
 			"command": ["golangci-lint-langserver"],
 			"extensions": [".go"],
 			"initialization": {
-				"command": ["golangci-lint", "run", "--output.json.path", "stdout", "--show-stats=false", "--issues-exit-code=1"]
+				"command": [
+					"golangci-lint",
+					"run",
+					"--output.json.path",
+					"stdout",
+					"--show-stats=false",
+					"--issues-exit-code=1"
+				]
 			}
 		}
 	},
@@ -46,6 +53,7 @@
 			"curl *|bash*": "deny",
 			"wget *|bash*": "deny",
 			"git *": "ask",
+			"git commit": "deny",
 			"git push": "deny",
 			"git push --force*": "deny",
 			"git push *--force*": "deny",

@@ -25,6 +25,39 @@
     refreshPeriod = "168h"
 {{ end -}}
 
+[".agents/skills/obsidian-skills"]
+    type = "archive"
+    url = "https://github.com/kepano/obsidian-skills/archive/refs/heads/main.zip"
+    stripComponents = 2
+    include = ["*/", "*/**"]
+    refreshPeriod = "168h"
+
+[".agents/skills/slidev"]
+    type = "archive"
+    url = "https://github.com/slidevjs/slidev/archive/refs/heads/main.zip"
+    stripComponents = 3
+    include = ["*/skills/slidev/**"]
+    refreshPeriod = "168h"
+
+[".agents/skills/humanizer"]
+    type = "archive"
+    url = "https://github.com/trailofbits/skills-curated/archive/refs/heads/main.zip"
+    stripComponents = 5
+    include = ["*/plugins/humanizer/skills/humanizer/**"]
+    refreshPeriod = "168h"
+
+[".agents/skills/modern-python"]
+    type = "archive"
+    url = "https://github.com/trailofbits/skills-curated/archive/refs/heads/main.zip"
+    stripComponents = 5
+    include = ["*/plugins/modern-python/skills/modern-python/**"]
+    refreshPeriod = "168h"
+
+[".agents/skills/gh-cli/SKILL.md"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/trailofbits/skills/refs/heads/main/plugins/gh-cli/README.md"
+    refreshPeriod = "168h"
+
 [".config/zsh/plugins/zsh-syntax-highlighting"]
     type = "archive"
     url = "https://github.com/zsh-users/zsh-syntax-highlighting/archive/refs/tags/0.8.0.tar.gz"

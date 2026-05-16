@@ -215,9 +215,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/coreyhaines31/marketingskills.git",
       "skillPath": "skills/ai-seo/SKILL.md",
-      "skillFolderHash": "fc01f387bd4babda49225822ba97bc6732082be1",
+      "skillFolderHash": "322814ad2412f48244405863e80bcd7e6288ad60",
       "installedAt": "2026-04-22T06:06:48.175Z",
-      "updatedAt": "2026-04-22T06:06:48.175Z"
+      "updatedAt": "2026-05-14T13:20:59.166Z"
     },
     "brand-guidelines": {
       "source": "anthropics/skills",
@@ -415,9 +415,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/juliusbrussee/caveman.git",
       "skillPath": "skills/caveman-commit/SKILL.md",
-      "skillFolderHash": "f8d14c8de94e55b43de62b4b3081230248e2f481",
+      "skillFolderHash": "34e52a2870460e4ed4b79049d5a2569097c0710e",
       "installedAt": "2026-04-22T06:19:12.952Z",
-      "updatedAt": "2026-04-22T06:19:12.952Z"
+      "updatedAt": "2026-05-14T04:08:26.233Z"
     },
     "caveman-compress": {
       "source": "juliusbrussee/caveman",
@@ -433,18 +433,18 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/juliusbrussee/caveman.git",
       "skillPath": "skills/caveman-help/SKILL.md",
-      "skillFolderHash": "0456947ac9539b1f8cba536f3b7a19d7a0f4eb91",
+      "skillFolderHash": "91d43545d1f02e9ef95051b42ee562867362fe6e",
       "installedAt": "2026-04-22T06:19:13.469Z",
-      "updatedAt": "2026-04-22T06:19:13.469Z"
+      "updatedAt": "2026-05-14T04:08:27.176Z"
     },
     "caveman-review": {
       "source": "juliusbrussee/caveman",
       "sourceType": "github",
       "sourceUrl": "https://github.com/juliusbrussee/caveman.git",
       "skillPath": "skills/caveman-review/SKILL.md",
-      "skillFolderHash": "2147719da5f81255dbf960d6ce46d5a7ee9d0860",
+      "skillFolderHash": "2d9762b7aec395b9713fde57fb8965bc3bbd2c3f",
       "installedAt": "2026-04-22T06:19:13.712Z",
-      "updatedAt": "2026-04-22T06:19:13.712Z"
+      "updatedAt": "2026-05-14T04:08:28.091Z"
     },
     "compress": {
       "source": "juliusbrussee/caveman",

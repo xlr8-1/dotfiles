@@ -1,30 +1,11 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
-  "alwaysThinkingEnabled": false,
   "cleanupPeriodDays": 365,
-  "enableAllProjectMcpServers": false,
   "env": {
     "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1",
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
     "DISABLE_ERROR_REPORTING": "1",
     "DISABLE_TELEMETRY": "1"
-  },
-  "hooks": {
-    "PreToolUse": [
-      {
-        "hooks": [
-          {
-            "command": "CMD=$(jq -r '.tool_input.command'); if echo \"$CMD\" | grep -qiE '(^|;[[:space:]]*|\u0026\u0026[[:space:]]*|[|][|][[:space:]]*|[|][[:space:]]*)rm[[:space:]]' \u0026\u0026 echo \"$CMD\" | grep -qiE '(^|[[:space:]])-[a-zA-Z]*[rR]|--recursive' \u0026\u0026 echo \"$CMD\" | grep -qiE '(^|[[:space:]])-[a-zA-Z]*[fF]|--force'; then echo 'BLOCKED: Use trash instead of rm -rf' \u003e\u00262; exit 2; fi",
-            "type": "command"
-          },
-          {
-            "command": "CMD=$(jq -r '.tool_input.command'); if echo \"$CMD\" | grep -qE 'git[[:space:]]+push.*(main|master)'; then echo 'BLOCKED: Use feature branches, not direct push to main' \u003e\u00262; exit 2; fi",
-            "type": "command"
-          }
-        ],
-        "matcher": "Bash"
-      }
-    ]
   },
   "permissions": {
     "deny": [
@@ -61,8 +42,29 @@
       "Read(~/Library/Application Support/**/solflare*/**)"
     ]
   },
+  "enableAllProjectMcpServers": false,
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "CMD=$(jq -r '.tool_input.command'); if echo \"$CMD\" | grep -qiE '(^|;[[:space:]]*|&&[[:space:]]*|[|][|][[:space:]]*|[|][[:space:]]*)rm[[:space:]]' && echo \"$CMD\" | grep -qiE '(^|[[:space:]])-[a-zA-Z]*[rR]|--recursive' && echo \"$CMD\" | grep -qiE '(^|[[:space:]])-[a-zA-Z]*[fF]|--force'; then echo 'BLOCKED: Use trash instead of rm -rf' >&2; exit 2; fi"
+          },
+          {
+            "type": "command",
+            "command": "CMD=$(jq -r '.tool_input.command'); if echo \"$CMD\" | grep -qE 'git[[:space:]]+push.*(main|master)'; then echo 'BLOCKED: Use feature branches, not direct push to main' >&2; exit 2; fi"
+          }
+        ]
+      }
+    ]
+  },
   "statusLine": {
-    "command": "bash -c 'I=$(cat);D=$HOME/.onwatch/data;mkdir -p \"$D\" 2\u003e/dev/null;T=\"$D/.sl-$$\";printf \"%s\" \"$I\"\u003e\"$T\"\u0026\u0026mv -f \"$T\" \"$D/anthropic-statusline.json\" 2\u003e/dev/null||rm -f \"$T\" 2\u003e/dev/null;printf \"%s\" \"$I\"' | ~/.claude/statusline.sh",
-    "type": "command"
-  }
+    "type": "command",
+    "command": "bash -c 'I=$(cat);D=$HOME/.onwatch/data;mkdir -p \"$D\" 2>/dev/null;T=\"$D/.sl-$$\";printf \"%s\" \"$I\">\"$T\"&&mv -f \"$T\" \"$D/anthropic-statusline.json\" 2>/dev/null||rm -f \"$T\" 2>/dev/null;printf \"%s\" \"$I\"' | ~/.claude/statusline.sh"
+  },
+  "alwaysThinkingEnabled": false,
+  "effortLevel": "medium",
+  "model": "opus"
 }

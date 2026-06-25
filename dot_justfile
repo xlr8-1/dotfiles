@@ -1,0 +1,194 @@
+default:
+    @just --choose
+
+update:
+    #!/usr/bin/env zsh
+    set -euo pipefail
+    echo "🔍 Updating system..."
+    brew upgrade --cask --greedy
+    GITHUB_TOKEN=$(gh auth token) topgrade --cleanup
+    GITHUB_TOKEN=$(gh auth token) dotbins sync -c
+    just cleanup
+
+# Install package from brew/apt/cargo/npm/bun/uv (checks in order)
+install package_name:
+    #!/usr/bin/env zsh
+    set -euo pipefail
+
+    echo "🔍 Searching for package: {{ package_name }}"
+
+    # Check brew first
+    if command -v brew >/dev/null 2>&1; then
+        echo "Checking brew..."
+        if brew search "{{ package_name }}" 2>/dev/null | grep -q "{{ package_name }}"; then
+            echo "✅ Found in brew, installing..."
+            brew install "{{ package_name }}"
+            exit 0
+        fi
+    fi
+
+    # Check apt
+    if command -v apt >/dev/null 2>&1; then
+        echo "Checking apt..."
+        if apt-cache search "^{{ package_name }}$" 2>/dev/null | grep -q "{{ package_name }}"; then
+            echo "✅ Found in apt, installing..."
+            sudo apt update && sudo apt install -y "{{ package_name }}"
+            exit 0
+        fi
+    fi
+
+    # Check cargo
+    if command -v cargo >/dev/null 2>&1; then
+        echo "Checking cargo..."
+        if cargo search "{{ package_name }}" 2>/dev/null | head -20 | grep -q "^{{ package_name }} "; then
+            echo "✅ Found in cargo, installing..."
+            cargo install "{{ package_name }}"
+            exit 0
+        fi
+    fi
+
+    # Check npm (for bun installation)
+    if command -v npm >/dev/null 2>&1; then
+        echo "Checking npm registry..."
+        if npm view "{{ package_name }}" >/dev/null 2>&1; then
+            if command -v bun >/dev/null 2>&1; then
+                echo "✅ Found in npm, installing with bun..."
+                bun add --global "{{ package_name }}"
+            else
+                echo "✅ Found in npm, installing with npm..."
+                npm install -g "{{ package_name }}"
+            fi
+            exit 0
+        fi
+    fi
+
+    # Try uv as last resort (for Python tools)
+    if command -v uv >/dev/null 2>&1; then
+        echo "Trying uv tool install..."
+        if uv tool install "{{ package_name }}" 2>/dev/null; then
+            echo "✅ Installed with uv"
+            exit 0
+        fi
+    fi
+
+    echo "❌ Package '{{ package_name }}' not found in any package manager (brew, apt, cargo, npm, uv)"
+    echo "Available package managers:"
+    command -v brew >/dev/null 2>&1 && echo "  - brew ✓" || echo "  - brew ✗"
+    command -v apt >/dev/null 2>&1 && echo "  - apt ✓" || echo "  - apt ✗"
+    command -v cargo >/dev/null 2>&1 && echo "  - cargo ✓" || echo "  - cargo ✗"
+    command -v npm >/dev/null 2>&1 && echo "  - npm ✓" || echo "  - npm ✗"
+    command -v bun >/dev/null 2>&1 && echo "  - bun ✓" || echo "  - bun ✗"
+    command -v uv >/dev/null 2>&1 && echo "  - uv ✓" || echo "  - uv ✗"
+    exit 1
+
+# Manage dotfiles
+dotfiles: dotfiles-prepare dotfiles-commit-push
+
+# Prepare dotfiles (no confirmation needed)
+dotfiles-prepare:
+    #!/usr/bin/env zsh
+    set -euo pipefail
+
+    echo "🔍 Preparing dotfiles..."
+
+    if command -v brew >/dev/null 2>&1; then
+        brew bundle dump --global --force
+    fi;
+    if command -v cargo >/dev/null 2>&1; then
+        cargo install --list | grep -E '^[a-zA-Z0-9_-]+ v[0-9.]+' | awk '{print $1}' > cargo.list
+    fi;
+    if command -v npm >/dev/null 2>&1; then
+        npm list -g --depth=0 > npm.list
+    fi;
+    if command -v uv >/dev/null 2>&1; then
+        ls "$(uv tool dir)" 2>/dev/null > uv.list || echo "" > uv.list
+    fi;
+
+    dotbare add -u
+    dotbare status
+
+# Commit and push with confirmation
+[confirm]
+dotfiles-commit-push:
+    dotbare commit -am "update"
+    dotbare push
+
+sync:
+    #!/usr/bin/env zsh
+    set -euo pipefail
+
+    echo "🔍 Syncing..."
+
+    dotbare pull
+
+    if [ -f ~/.Brewfile ] && command -v brew >/dev/null 2>&1; then
+        brew bundle install --global --force
+    fi;
+    if [ -f cargo.list ] && command -v cargo >/dev/null 2>&1; then
+        cat cargo.list | xargs -I {} cargo install {}
+    fi;
+    if command -v bun >/dev/null 2>&1; then
+        bun update -g
+    fi;
+    if [ -f npm.list ] && command -v npm >/dev/null 2>&1; then
+        cat npm.list | xargs -I {} npm install -g {}
+    fi;
+    if [ -f uv.list ] && command -v uv >/dev/null 2>&1; then
+        cat uv.list | xargs -I {} uv tool install {}
+    fi;
+
+    just cleanup
+
+cleanup:
+    #!/usr/bin/env zsh
+    set -euo pipefail
+
+    echo "🔍 Cleaning up..."
+
+    if command -v brew >/dev/null 2>&1; then
+        echo "🔍 Cleaning up brew..."
+        brew cleanup --prune=0
+        rm -rf "$(brew --cache)"
+        brew doctor
+    fi;
+
+    if command -v apt >/dev/null 2>&1; then
+        echo "🔍 Cleaning up apt..."
+        sudo apt autoremove --purge
+        sudo apt clean
+        sudo apt autoclean
+    fi;
+
+    if command -v bun >/dev/null 2>&1; then
+        echo "🔍 Cleaning up bun..."
+        bun -g pm cache rm
+    fi;
+
+    if command -v npm >/dev/null 2>&1; then
+        echo "🔍 Cleaning up npm..."
+        npm -g cache clean --force
+    fi;
+
+    if command -v uv >/dev/null 2>&1; then
+        echo "🔍 Cleaning up uv..."
+        uv cache clean
+    fi;
+
+    if command -v docker >/dev/null 2>&1; then
+        echo "🔍 Cleaning up docker..."
+        docker system prune -a -f
+    fi;
+
+    if command -v cargo >/dev/null 2>&1; then
+        echo "🔍 Cleaning up cargo..."
+        cargo cache --remove-dir all
+    fi;
+
+    if command -v atuin >/dev/null 2>&1; then
+      echo "🔍 Cleaning up atuin history..."
+      atuin history dedup --before now --dupkeep=1
+    fi;
+
+scp:
+    cd $HOME/Developer/HTB
+    termscp

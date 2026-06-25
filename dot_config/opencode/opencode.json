@@ -1,14 +1,19 @@
 {
 	"$schema": "https://opencode.ai/config.json",
-  "plugin": [
-    "superpowers@git+https://github.com/obra/superpowers.git",
-    "@tarquinen/opencode-dcp@latest"
-  ],
+	"plugin": [
+		"superpowers@git+https://github.com/obra/superpowers.git",
+		"@tarquinen/opencode-dcp@latest"
+	],
 	"disabled_providers": ["opencode"],
 	"mcp": {
 		"context7": {
 			"type": "remote",
 			"url": "https://mcp.context7.com/mcp"
+		},
+		"codegraph": {
+			"type": "local",
+			"command": ["codegraph", "serve", "--mcp"],
+			"enabled": true
 		}
 	},
 	"lsp": {
@@ -56,6 +61,8 @@
 			"curl *|bash*": "deny",
 			"wget *|bash*": "deny",
 			"git *": "ask",
+			"git status *": "allow",
+			"git show *": "allow",
 			"git commit": "deny",
 			"git push": "deny",
 			"git push --force*": "deny",

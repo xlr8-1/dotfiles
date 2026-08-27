@@ -3,8 +3,9 @@
 -- https://wiki.hypr.land/Configuring/Basics/Variables/#general
 hl.config({
   general = {
-    gaps_in = 4,
-    gaps_out = 4,
+    gaps_in = 2,
+    gaps_out = 2,
+    border_size = 1,
   },
 })
 

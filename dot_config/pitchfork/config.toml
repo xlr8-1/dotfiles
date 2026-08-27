@@ -1,0 +1,13 @@
+# https://pitchfork.jdx.dev/guides/port-management.html
+#
+# Reverse proxy scaffold — no daemons registered yet. Add project daemons
+# either here under [daemons.<name>] or via `pitchfork proxy add <slug>`.
+
+[settings.proxy]
+enable = true
+
+# https://pitchfork.jdx.dev/guides/web-ui.html
+#
+[settings.web]
+auto_start = true
+bind_port = 3120

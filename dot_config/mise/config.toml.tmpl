@@ -78,3 +78,10 @@ _.path = "~/.cargo/bin"
 
 [settings]
 experimental = true
+
+{{ if eq .distro "omarchy" -}}
+[bootstrap.services.tailscaled]
+state = "running"
+enabled = true
+
+{{ end -}}

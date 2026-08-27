@@ -1,3 +1,6 @@
 -- Extra autostart processes.
 -- o.launch_on_start("my-service")
 o.launch_on_start("atuin daemon")
+{{ if eq .chezmoi_env "dev" -}}
+o.launch_on_start("pitchfork supervisor start --force")
+{{ end -}}

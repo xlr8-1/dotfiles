@@ -26,3 +26,7 @@ Library
 {{- if ne .chezmoi_env "security" }}
 .rustscan.toml
 {{- end }}
+
+{{- if ne .chezmoi_env "dev" }}
+.config/pitchfork
+{{- end }}

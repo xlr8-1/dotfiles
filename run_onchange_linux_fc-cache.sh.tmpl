@@ -18,14 +18,8 @@ echo "🔄 Reloading configurations..."
 # Reload Hyprland configuration
 omarchy-restart-hyprctl
 
-# Restart Waybar to pick up new config
-omarchy-restart-waybar
-
-# Restart Mako notification daemon
-omarchy-restart-mako
-
-# Restart SwayOSD
-omarchy-restart-swayosd
+# Restart Quickshell shell (bar, notifications, OSD, lock screen)
+omarchy restart shell
 
 # Reload systemd user daemon
 if systemctl --user list-unit-files | grep -q "omarchy-battery-monitor.service"; then

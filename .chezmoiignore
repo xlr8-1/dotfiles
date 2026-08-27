@@ -18,7 +18,6 @@ Library
 .config/hypr
 .config/omarchy
 .config/uwsm
-.config/waybar
 .config/satty
 .config/zen
 .local/share/omarchy

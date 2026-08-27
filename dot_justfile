@@ -5,7 +5,6 @@ update:
     #!/usr/bin/env zsh
     set -euo pipefail
     echo "🔍 Updating system..."
-    brew upgrade --cask --greedy
     GITHUB_TOKEN=$(gh auth token) topgrade --cleanup
     just cleanup
 

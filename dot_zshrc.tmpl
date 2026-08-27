@@ -6,7 +6,6 @@ export PATH=$PATH:/opt/homebrew/bin
 autoload -Uz compinit
 compinit
 
-source $HOME/.dotbins/shell/zsh.sh
 source ~/.config/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -17,3 +16,52 @@ export OPENCODE_EXPERIMENTAL_OXFMT=true
 export DISABLE_TELEMETRY=1
 export PATH="$HOME/.bun/bin:$PATH"
 export PORTLESS_TLD=test
+
+if command -v mise >/dev/null 2>&1; then
+    eval "$(mise activate zsh)"
+fi
+
+if command -v bat >/dev/null 2>&1; then
+    alias bat="bat --paging=never"
+    alias cat="bat --paging=never --plain"
+fi
+
+if command -v fzf >/dev/null 2>&1; then
+    source <(fzf --zsh)
+fi
+
+if command -v lazygit >/dev/null 2>&1; then
+    alias lg="lazygit"
+fi
+
+if command -v zoxide >/dev/null 2>&1; then
+    eval "$(zoxide init zsh)"
+fi
+
+if command -v starship >/dev/null 2>&1; then
+    eval "$(starship init zsh)"
+fi
+
+if command -v atuin >/dev/null 2>&1; then
+    eval "$(atuin init zsh)"
+fi
+
+if command -v lsd >/dev/null 2>&1; then
+    alias ls="lsd"
+    alias ll="lsd -lah"
+    alias lt="lsd --tree"
+fi
+
+if command -v sk >/dev/null 2>&1; then
+    eval "$(sk --shell zsh)"
+fi
+
+if command -v gh >/dev/null 2>&1; then
+    eval "$(gh completion -s zsh)"
+fi
+
+{{ if eq (index . "chezmoi_env" | default "common") "security" -}}
+if command -v bloodhound-cli >/dev/null 2>&1; then
+    eval "$(bloodhound-cli completion zsh)"
+fi
+{{ end -}}

@@ -7,7 +7,6 @@ update:
     echo "🔍 Updating system..."
     brew upgrade --cask --greedy
     GITHUB_TOKEN=$(gh auth token) topgrade --cleanup
-    GITHUB_TOKEN=$(gh auth token) dotbins sync -c
     just cleanup
 
 # Install package from brew/apt/cargo/npm/bun/uv (checks in order)

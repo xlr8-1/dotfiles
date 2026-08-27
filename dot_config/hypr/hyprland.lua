@@ -22,6 +22,11 @@ require("hypr.bindings")
 require("hypr.looknfeel")
 require("hypr.autostart")
 
+-- NVIDIA environment variables
+hl.env("NVD_BACKEND", "direct")
+hl.env("LIBVA_DRIVER_NAME", "nvidia")
+hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
+
 -- Toggle config flags dynamically.
 require("default.hypr.toggles")
 
